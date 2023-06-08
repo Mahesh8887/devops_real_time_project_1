@@ -1,0 +1,20 @@
+---
+- name: CREATE DIRECTORY & COPY FILES
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: CREATE DOCKER DIRECTORY
+      file:
+        path: /opt/docker
+        state: directory
+        mode: "0755"      
+
+    - name: COPY DOCKERFILE
+      copy:
+        src: ../Dockerfile
+        dest: /opt/docker
+
+    - name: COPY WAR FILE
+      copy:
+        src: ../webapp/target/webapp.war
+        dest: /opt/docker
